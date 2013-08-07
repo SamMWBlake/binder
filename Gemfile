@@ -21,10 +21,12 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# Turbolinks makes following links in your web application faster.
+# https://github.com/rails/turbolinks
 gem 'turbolinks'
 
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+# Build JSON APIs with ease.
+# https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
 group :doc do
@@ -43,3 +45,7 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Hide sensitive configuration data (e.g. secret tokens) in environment variables.
+# https://github.com/laserlemon/figaro
+gem 'figaro'
