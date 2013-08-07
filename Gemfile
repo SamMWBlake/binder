@@ -49,3 +49,6 @@ gem 'debugger', group: [:development, :test]
 # Hide sensitive configuration data (e.g. secret tokens) in environment variables.
 # https://github.com/laserlemon/figaro
 gem 'figaro'
+
+# Enable HAML as default markup language for templating engine and generators.
+gem 'haml-rails'
