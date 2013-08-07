@@ -55,3 +55,7 @@ gem 'haml-rails'
 
 # Use the Foundation responsive framework
 gem 'zurb-foundation'
+
+# Use the Devise authentication system
+# https://github.com/plataformatec/devise
+gem 'devise'
