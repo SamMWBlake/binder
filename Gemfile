@@ -52,3 +52,6 @@ gem 'figaro'
 
 # Enable HAML as default markup language for templating engine and generators.
 gem 'haml-rails'
+
+# Use the Foundation responsive framework
+gem 'zurb-foundation'
