@@ -44,7 +44,7 @@ end
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]
 
 # Hide sensitive configuration data (e.g. secret tokens) in environment variables.
 # https://github.com/laserlemon/figaro
