@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130807192012) do
+ActiveRecord::Schema.define(version: 20130808024746) do
+
+  create_table "repertoires", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "repertoires", ["user_id"], name: "index_repertoires_on_user_id", using: :btree
+
+  create_table "repertoires_songs", force: true do |t|
+    t.integer "repertoire_id"
+    t.integer "song_id"
+  end
+
+  create_table "songs", force: true do |t|
+    t.string   "title"
+    t.string   "artist"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
