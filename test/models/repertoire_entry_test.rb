@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RepertoireTest < ActiveSupport::TestCase
+class RepertoireEntryTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -11,20 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808043931) do
+ActiveRecord::Schema.define(version: 20130808162001) do
 
-  create_table "repertoires", force: true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "repertoires", ["user_id"], name: "index_repertoires_on_user_id", using: :btree
-
-  create_table "repertoires_songs", id: false, force: true do |t|
-    t.integer "repertoire_id"
+  create_table "repertoire_entries", id: false, force: true do |t|
+    t.integer "user_id"
     t.integer "song_id"
   end
+
+  add_index "repertoire_entries", ["user_id", "song_id"], name: "index_repertoire_entries_on_user_id_and_song_id", unique: true, using: :btree
 
   create_table "songs", force: true do |t|
     t.string   "title"
