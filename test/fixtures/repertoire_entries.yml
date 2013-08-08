@@ -1,0 +1,11 @@
+sam_occasional:
+  user: sam
+  song: occasional
+
+sam_standard:
+  user: sam
+  song: standard
+
+sam_untried:
+  user: sam
+  song: untried

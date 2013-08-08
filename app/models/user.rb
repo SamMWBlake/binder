@@ -5,5 +5,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :repertoire_entries
   has_many :songs, through: :repertoire_entries
 end

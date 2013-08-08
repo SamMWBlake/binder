@@ -5,6 +5,10 @@ Binder::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+  
+  resources :users, only: [] do
+    resources :songs, only: [:index, :create, :destroy]
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
