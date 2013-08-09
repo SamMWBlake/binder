@@ -1,0 +1,13 @@
+= form_for :song, url: new_song_path do |f|
+  %p
+    = f.label :title
+    %br
+    = f.text_field :title, class: "autocomplete-song-titles"
+
+  %p
+    = f.label :artist
+    %br
+    = f.text_field :artist, class: "autocomplete-song-artists"
+
+  %p
+    = f.submit
