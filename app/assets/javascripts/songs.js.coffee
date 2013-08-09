@@ -1,3 +1,26 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  $(".autocomplete-song-titles").autocomplete
+    minLength: 1
+    select: (event, ui) ->
+      $(".autocomplete-song-artists").val(ui.item.value_artist)
+    source: (request, response) ->
+      $.getJSON("/songs",
+        starts_with: request.term
+      ).done((data) ->
+        response $.map(data, (song) ->
+          label: song.title + " (" + song.artist + ")"
+          value: song.title
+          value_artist: song.artist
+        )
+      ).fail ->
+        response []
+
+  $(".autocomplete-song-artists").autocomplete
+    minLength: 1
+    source: (request, response) ->
+      $.getJSON("/artists",
+        starts_with: request.term
+      ).done((data) ->
+        response $.map(data, (artist) -> artist.name)
+      ).fail ->
+        response []

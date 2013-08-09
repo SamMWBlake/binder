@@ -59,3 +59,6 @@ gem 'zurb-foundation'
 # Use the Devise authentication system
 # https://github.com/plataformatec/devise
 gem 'devise'
+
+# Use jQuery UI (customizable with SASS) for front-end widgets
+gem 'jquery-ui-sass-rails'

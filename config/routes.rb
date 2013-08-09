@@ -4,11 +4,15 @@ Binder::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
-  
+  root "songs#index"
+
   resources :users, only: [] do
-    resources :songs, only: [:index, :create, :destroy]
+    resources :songs, only: [:index, :new, :create, :destroy]
   end
+
+  resources :songs, only: [:index]
+
+  resources :artists, only: [:index]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

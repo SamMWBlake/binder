@@ -1,4 +1,4 @@
-= form_for :song, url: new_song_path do |f|
+= form_for :song, url: {action: 'create'} do |f|
   %p
     = f.label :title
     %br
