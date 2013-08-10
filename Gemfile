@@ -66,3 +66,6 @@ gem 'jquery-ui-sass-rails'
 
 # Enable Heroku integration
 gem 'rails_12factor', group: :production
+
+# Use High Voltage to manage static pages
+gem 'high_voltage'

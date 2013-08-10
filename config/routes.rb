@@ -4,7 +4,7 @@ Binder::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root "songs#index"
+  root 'high_voltage/pages#show', id: 'home'
 
   resources :users, only: [] do
     resources :songs, only: [:index, :new, :create, :destroy]
