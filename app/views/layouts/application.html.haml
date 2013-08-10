@@ -3,15 +3,43 @@
   %head
     %meta{:charset => "utf-8"}
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %title Binder
+    %title Empty Orchestra
     = render "layouts/ga" if Rails.env.production?
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    %p.notice
-      = notice
-    %p.alert
-      = alert
-    = yield
-    = render "layouts/uservoice"
+    .account-management
+      - if user_signed_in?
+        %ul
+          %li
+            = link_to 'Manage account', edit_user_registration_path
+          &middot;
+          %li
+            = link_to 'Sign out', destroy_user_session_path, :method => :delete
+      - else
+        %ul
+          %li
+            = link_to 'Create account', new_user_registration_path
+          &middot;
+          %li
+            = link_to 'Sign in', new_user_session_path
+    %h1 Empty Orchestra
+    .subtitle everything but the karaoke
+    - if notice or alert
+      .container
+        - if notice
+          .flash-container.ui-state-highlight
+            %span.ui-icon.ui-icon-info
+            %p.notice
+              = notice
+        - if alert
+          .flash-container.ui-state-error
+            %span.ui-icon.ui-icon-alert
+            %p.alert
+              = alert
+    .container
+      = yield
+    %hr
+    .container
+      = render "layouts/uservoice"

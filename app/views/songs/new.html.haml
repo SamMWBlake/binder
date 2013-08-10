@@ -1,12 +1,10 @@
 = form_for :song, url: {action: 'create'} do |f|
   %p
     = f.label :title
-    %br
     = f.text_field :title, class: "autocomplete-song-titles"
 
   %p
     = f.label :artist
-    %br
     = f.text_field :artist, class: "autocomplete-song-artists"
 
   %p
