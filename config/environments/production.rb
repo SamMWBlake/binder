@@ -79,5 +79,5 @@ Binder::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Set default URL host in emails
-  config.action_mailer.default_url_options = {:host => "localhost:3000"}
+  config.action_mailer.default_url_options = {:host => "emptyorchestra.herokuapp.com"}
 end
