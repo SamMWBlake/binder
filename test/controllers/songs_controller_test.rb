@@ -67,12 +67,12 @@ class SongsControllerTest < ActionController::TestCase
   # new
 
   test "should show new song form for current user" do
-    get :new, user_id: @user.id
+    get :new, user_id: @user.username
     assert_response :success
   end
 
   test "new should redirect to song list for other user" do
-    get :new, user_id: @other_user.id
+    get :new, user_id: @other_user.username
     assert_redirected_to user_songs_path(@other_user)
   end
 
@@ -82,7 +82,7 @@ class SongsControllerTest < ActionController::TestCase
     song = songs(:standard)
     assert @repertoire.include? song
     assert_no_difference(@count_songs) do
-      post :create, song: {title: song.title, artist: song.artist.name}, user_id: @user.id
+      post :create, song: {title: song.title, artist: song.artist.name}, user_id: @user.username
     end
     assert @repertoire.include? song
     assert_redirected_to user_songs_path(@user)
@@ -92,7 +92,7 @@ class SongsControllerTest < ActionController::TestCase
     song = songs(:overplayed)
     refute @repertoire.include? song
     assert_difference(@count_songs) do
-      post :create, song: {title: song.title, artist: song.artist.name}, user_id: @user.id
+      post :create, song: {title: song.title, artist: song.artist.name}, user_id: @user.username
     end
     assert @repertoire.include? song
     assert_redirected_to user_songs_path(@user)
@@ -100,7 +100,7 @@ class SongsControllerTest < ActionController::TestCase
 
   test "create should redirect to song list for other user" do
     song = songs(:overplayed)
-    post :create, song: {title: song.title, artist: song.artist.name}, user_id: @other_user.id
+    post :create, song: {title: song.title, artist: song.artist.name}, user_id: @other_user.username
     assert_redirected_to user_songs_path(@other_user)
   end
 
@@ -110,7 +110,7 @@ class SongsControllerTest < ActionController::TestCase
     song = songs(:standard)
     assert @repertoire.include? song
     assert_difference(@count_songs, -1) do
-      delete :destroy, id: song.id, user_id: @user.id
+      delete :destroy, id: song.id, user_id: @user.username
     end
     refute @repertoire.include? song
     assert_redirected_to user_songs_path(@user)
@@ -120,7 +120,7 @@ class SongsControllerTest < ActionController::TestCase
     song = songs(:overplayed)
     refute @repertoire.include? song
     assert_no_difference(@count_songs) do
-      delete :destroy, id: song.id, user_id: @user.id
+      delete :destroy, id: song.id, user_id: @user.username
     end
     refute @repertoire.include? song
     assert_redirected_to user_songs_path(@user)
@@ -128,7 +128,7 @@ class SongsControllerTest < ActionController::TestCase
 
   test "destroy should redirect to song list for other user" do
     song = songs(:overplayed)
-    delete :destroy, id: song.id, user_id: @other_user.id
+    delete :destroy, id: song.id, user_id: @other_user.username
     assert_redirected_to user_songs_path(@other_user)
   end
 end

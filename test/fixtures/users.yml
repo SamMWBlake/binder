@@ -1,12 +1,15 @@
 admin:
+  username: admin
   email: admin@zombo.com
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
   admin: true
 
 sam:
+  username: sam
   email: sam@zombo.com
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
 
 sarah:
+  username: sarah
   email: sarah@zombo.com
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>

@@ -6,7 +6,7 @@ class SongsController < ApplicationController
     if params.include? :user_id
       # /users/:user_id/songs
       # Show all songs associated with this user
-      user = User.find(params[:user_id])
+      user = User.friendly.find(params[:user_id])
       @songs = user.songs
 
       # Signed-in users can add songs to their own lists
@@ -41,7 +41,7 @@ class SongsController < ApplicationController
     song = Song.find_or_create_by(title: params[:song][:title], artist_id: artist.id);
 
     # Create repertoire entry (association between user and song)
-    user = User.find(params[:user_id])
+    user = User.friendly.find(params[:user_id])
     user.songs << song unless user.songs.include? song
 
     redirect_to user_songs_path
@@ -49,7 +49,7 @@ class SongsController < ApplicationController
 
   def destroy
     # Delete repertoire entry (if it exists)
-    user = User.find(params[:user_id])
+    user = User.friendly.find(params[:user_id])
     song = Song.find(params[:id])
     user.songs.delete(song)
 
@@ -58,7 +58,7 @@ class SongsController < ApplicationController
 
   private
     def authorize_modify
-      unless user_signed_in? and (current_user.id == params[:user_id].to_i or current_user.admin?)
+      unless user_signed_in? and (current_user == User.friendly.find(params[:user_id]) or current_user.admin?)
         redirect_to user_songs_path
       end
     end

@@ -12,11 +12,13 @@ Binder::Application.routes.draw do
 
   devise_for :users
 
-  resources :users, only: [] do
+  resources :users, :path => '', only: [] do
     resources :songs, only: [:index, :new, :create, :destroy]
   end
 
   resources :songs, only: [:index]
 
   resources :artists, only: [:index]
+
+  get '/:user_id', to: 'songs#index', as: :user_song_list
 end
