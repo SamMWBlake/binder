@@ -1,7 +1,7 @@
 - if @can_add
   = link_to "Add song", new_user_song_path
 
-%ul
+%ul.repertoire
   - @songs.each do |song|
     %li
       = "#{song.title} (#{song.artist.name})"

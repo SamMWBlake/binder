@@ -72,3 +72,7 @@ gem 'high_voltage'
 
 # Enable friendly/sluggable URLs
 gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master'
+
+# Enable user-level interaction in integration tests
+# https://github.com/jnicklas/capybara
+gem 'capybara'
