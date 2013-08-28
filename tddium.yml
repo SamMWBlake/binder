@@ -1,0 +1,4 @@
+:tddium:
+  :ruby_version: ruby-2.0.0-p247
+  :hooks:
+    :worker: (echo -n "SECRET_KEY_BASE: "; rake secret) > config/application.yml
