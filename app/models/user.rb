@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   validates_format_of :username, :with => /\A[a-z0-9-]+\z/i
   validates :username, length: { in: 1..50 }
 
-  has_many :repertoire_entries
-  has_many :songs, through: :repertoire_entries
+  has_many :jams
+  has_many :songs, through: :jams
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
