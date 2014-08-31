@@ -1,5 +1,5 @@
-- if @can_add
-  = link_to "Add song", new_user_song_path
+- if current_user == @singer
+  = link_to "Add song", new_user_jam_path(user_id: current_user)
 
 %ul.repertoire
   - @songs.each do |song|
