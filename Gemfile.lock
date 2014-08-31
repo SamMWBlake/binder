@@ -141,8 +141,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.3.0)
-      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
@@ -177,7 +175,6 @@ DEPENDENCIES
   rails_12factor
   sass-rails
   therubyracer
-  turbolinks
   uglifier
   unicorn
   zurb-foundation
