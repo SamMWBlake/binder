@@ -9,23 +9,16 @@
     = csrf_meta_tags
     = render 'layouts/ga' if Rails.env.production?
   %body
-    .account-management
-      - if user_signed_in?
-        %ul
-          %li
-            = link_to 'Manage account', edit_user_registration_path
-          &middot;
-          %li
-            = link_to 'Sign out', destroy_user_session_path, :method => :delete
-      - else
-        %ul
-          %li
-            = link_to 'Create account', new_user_registration_path
-          &middot;
-          %li
-            = link_to 'Sign in', new_user_session_path
-    %h1 Empty Orchestra
-    .subtitle everything but the karaoke
+    %header.site
+      .title Empty Orchestra
+      .account-management
+        - if user_signed_in?
+          %ul
+            %li
+              = link_to 'Manage account', edit_user_registration_path
+            &middot;
+            %li
+              = link_to 'Sign out', destroy_user_session_path, :method => :delete
     - if notice or alert
       .container
         - if notice
