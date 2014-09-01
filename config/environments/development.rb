@@ -1,32 +1,50 @@
 Binder::Application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
-
-  # In the development environment your application's code is reloaded on
-  # every request. This slows down response time but is perfect for development
-  # since you don't have to restart the web server when you make code changes.
-  config.cache_classes = false
-
-  # Do not eager load code on boot.
-  config.eager_load = false
-
-  # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  # Disable caching
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Set options for links in emails
+  config.action_mailer.default_url_options = {
+    protocol: :https,
+    host:     "localhost:3000"
+  }
 
-  # Print deprecation notices to the Rails logger.
-  config.active_support.deprecation = :log
+  # Send emails to letter_opener gem for previewing rather than delivering
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.raise_delivery_errors = false
 
   # Raise an error on page load if there are pending migrations
   config.active_record.migration_error = :page_load
 
-  # Debug mode disables concatenation and preprocessing of assets.
-  # This option may cause significant delays in view rendering with a large
-  # number of complex assets.
+  # Log deprecation notices
+  config.active_support.deprecation = :log
+
+  # Disable concatenation and preprocessing of assets
   config.assets.debug = true
 
-  # Set default URL host in emails
-  config.action_mailer.default_url_options = {:host => "localhost:3000"}
+  # Reload code on each request (so we don't have to restart the web server)
+  config.cache_classes = false
+
+  # Show detailed debugging information
+  config.consider_all_requests_local = true
+
+  # Load code only as needed
+  config.eager_load = false
+
+  # Customize `rails generate` output
+  config.generators do |g|
+    # Don't generate assets or helpers
+    g.assets      = false
+    g.helper      = false
+    g.javascripts = false
+    g.stylesheets = false
+
+    # Generate factories rather than fixtures
+    g.fixture_replacement :factory_girl, dir: "spec/factories"
+
+    # Generate HAML rather than ERB
+    g.template_engine = :haml
+
+    # Generate RSpec specs rather than Test::Unit classes
+    g.test_framework :rspec, fixture: true
+  end
 end

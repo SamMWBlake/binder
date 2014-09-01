@@ -1,26 +1,33 @@
-require File.expand_path('../boot', __FILE__)
+# Prepare environment for loading Rails
+require_relative 'boot'
 
+# Load Rails
 require 'rails/all'
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env)
+# Load utility functions
+require_all 'lib/utilities'
 
+# Require all gems for this application + environment
+Bundler.require :default, Rails.env
+
+# Create and configure application
 module Binder
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    # Cache application code when web server starts
+    config.cache_classes = true
 
-    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
-    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    # Filter secure parameters when logging
+    config.filter_parameters += [:password]
 
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    # Only allow setting the locale to one for which translations exist
+    config.i18n.enforce_available_locales = true
 
-    # Generate SASS stylesheets by default (rather than SCSS)
-    config.sass.preferred_syntax = :sass
+    # Set default locale to 'Murican English
+    # NOTE: This has to be set after enforce_available_locales because
+    # apparently Rails hates idempotence and/or alphabetical order
+    config.i18n.default_locale = :en
+
+    # Load translations recursively
+    config.i18n.load_path += Dir[Rails.root.join('config/locales/**/*.{rb,yml}')]
   end
 end
