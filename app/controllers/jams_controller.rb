@@ -11,12 +11,8 @@ class JamsController < ApplicationController
   end
 
   def create
-    # Find or create song
-    artist = Artist.find_or_create_by name: params[:jam][:artist]
-    song = Song.find_or_create_by title: params[:jam][:title], artist_id: artist.id
-
-    # Assign jam to singer
-    @singer.songs << song unless @singer.songs.include? song
+    # Add song to repertoire
+    @singer.add_song_to_repertoire params[:jam][:song_title], params[:jam][:artist_name]
 
     # Return to repertoire view
     redirect_to user_jams_path(@singer)
@@ -39,6 +35,9 @@ class JamsController < ApplicationController
       if params.include? :user_id
         @singer = User.friendly.find params[:user_id]
       else
+        # Redirect user to sign in if they're not yet
+        authenticate_user!
+
         @singer = current_user
       end
     end

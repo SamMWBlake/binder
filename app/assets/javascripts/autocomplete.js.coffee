@@ -2,7 +2,7 @@ $ ->
   $(".autocomplete-song-titles").autocomplete
     minLength: 1
     select: (event, ui) ->
-      $(".autocomplete-song-artists").val(ui.item.value_artist)
+      $(".autocomplete-artist-names").val(ui.item.value_artist)
     source: (request, response) ->
       $.getJSON("/songs",
         starts_with: request.term
@@ -15,7 +15,7 @@ $ ->
       ).fail ->
         response []
 
-  $(".autocomplete-song-artists").autocomplete
+  $(".autocomplete-artist-names").autocomplete
     minLength: 1
     source: (request, response) ->
       $.getJSON("/artists",

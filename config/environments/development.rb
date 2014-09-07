@@ -4,7 +4,7 @@ Binder::Application.configure do
 
   # Set options for links in emails
   config.action_mailer.default_url_options = {
-    protocol: :https,
+    protocol: :http,
     host:     "localhost:3000"
   }
 

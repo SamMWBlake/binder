@@ -17,9 +17,18 @@ class User < ActiveRecord::Base
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
-      where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+      where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
     else
-      where(conditions).first
+      where(conditions.to_h).first
     end
+  end
+
+  def add_song_to_repertoire(song_title, artist_name)
+    # Find (or create) song
+    artist = Artist.find_or_create_by name: artist_name
+    song = Song.find_or_create_by title: song_title, artist_id: artist.id
+
+    # Add song to user's repertoire
+    songs << song unless songs.include? song
   end
 end

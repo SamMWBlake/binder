@@ -7,8 +7,9 @@ class SongsController < ApplicationController
     else
       # /songs
       # Return all songs
-      @songs = Song.all
+      songs = Song.all
     end
-    render json: songs.map { |song| { id: song.id, title: song.title, artist: song.artist.name } }
+
+    render json: songs.map { |song| song.to_autocompletable }
   end
 end

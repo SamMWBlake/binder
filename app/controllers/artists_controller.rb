@@ -9,6 +9,7 @@ class ArtistsController < ApplicationController
       # Return all artists
       artists = Artist.all
     end
-    render json: artists.map { |artist| { id: artist.id, name: artist.name } }
+
+    render json: artists.map { |artist| artist.to_autocompletable }
   end
 end
